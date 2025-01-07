@@ -1,0 +1,1 @@
+import "../frontend/table.js";

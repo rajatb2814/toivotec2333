@@ -1,0 +1,314 @@
+{% load i18n %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% load zstatic %}
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <!doctype html>
+  
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta
+        name="viewport"
+        content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no"
+      />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="msapplication-tap-highlight" content="no" />
+  
+      <title>{{config.title}}</title>
+  
+      <link
+        href="http://fonts.googleapis.com/css?family=Roboto:300,400,500"
+        rel="stylesheet"
+        type="text/css"
+      />
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  
+      <link
+        rel="stylesheet"
+        href="{% zstatic 'packages/login/css/styles.css' %}"
+      />
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.6.0/tinycolor.min.js"
+        integrity="sha512-AvCfbOQzCVi2ctVWF4m89jLwTn/zVPJuS7rhiKyY3zqyCdbPqtvNa0I628GJqPytbowfFjkAGOpq85E5kQc40Q=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+      <style>
+  
+        .main-login-section {
+          background-image: url("{{background_image|safe}}");
+          background-position: center; 
+          background-repeat: no-repeat; 
+          background-size: cover;
+          {% comment %} background-color: "{{generic_config.background_color}}"; {% endcomment %}
+        }
+        .login-box {
+          background: {{generic_config.card_color}};
+          border-radius: {{generic_config.corner_radius}}px;
+        }
+        .login-hero-section {
+          position: relative;
+        }
+        .login-form #div_id_auth-username label {
+          color: {{generic_config.card_text_color}} !important;
+        }
+        .login-form #div_id_auth-password label {
+          color: {{generic_config.card_text_color}} !important;
+        }
+        #submit-id-submit {
+          background-color: {% if generic_config.background_color %} {{generic_config.primary_color}} !important; {% else %} #5048ED !important; {% endif %};
+          color: {% if app_theme_config.button %} {{app_theme_config.button.color}} !important ; {% else %} #FFFFFF !important; {% endif %}
+        }
+        .disabled-link { opacity: 0.5; filter: blur(2px); pointer-events: none; cursor: not-allowed; }
+        #div_id_user_role-user_role{
+          display: flex;
+          flex-direction: column;
+        }
+        #div_id_user_role-user_role select{
+          padding: 5px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="login-container">
+        {% include "login/_message_block.html" %} 
+        {% if generic_config.logo_placement == "topLeft" %}
+          <div class="login-logo">
+            {% if generic_config_logo %}
+              <img
+                src="{{generic_config_logo}}"
+                alt="Logo"
+                width="100"
+              
+              />
+            {% elif tenant_logo %}
+              <img
+                src="{{tenant_logo}}"
+                alt="Logo"
+                width="100"
+              
+              />
+            {% endif %}
+          </div>
+        {% endif %}
+  
+        <section class="main-login-section">
+          <div style="background-color: {% if generic_config.background_color %} {{generic_config.background_color}}7d {% else %} #5048EDaa {% endif %}; height: 100vh; width: 100%; position: absolute; top: 0;">
+
+          </div>
+          <div class="login-hero-section">
+            <div class="hero-left" style="color: white; text-align: left; color: {{generic_config.paragraph_text_color}} !important;">
+              <h1> {% if generic_config.header_text %} {{generic_config.header_text}} {% else %} {{tenant.name}} {% endif %}</h1>
+              <p>
+                {{generic_config.paragraph_text}}
+              </p>
+            </div>
+            <div class="hero-right">
+              <div class="login-box">
+                {% if generic_config.logo_placement == "insideLoginCard" %}
+                  <div class="login-box-logo">
+                    <img
+                      src="{% if generic_config_logo %} {{generic_config_logo}} {% else %} {{tenant_logo}} {% endif %}"
+                      alt="Logo"
+                      width="138"
+                      height="48"
+                    />
+                  </div>
+                {% endif %}
+  
+                <div class="login-box-header">{% if generic_config.card_title %} {{generic_config.card_title}} {% else %} Login {% endif %}</div>
+                <div
+                  class="login-header-underscore"
+                  id="login-header-underscore"
+                ></div>
+                <form class="login-form" action="" method="post">
+                  {% csrf_token %} {{ wizard.management_form }} {% crispy wizard.form %}
+                </form>
+
+                {% if providersList %}
+                  <div id="sso-section">
+                  
+                    <div style="margin-bottom: 24px;"> <hr style="color: rgb(221, 226, 229); width: 80%; margin: 20px auto 0px;"><p style="margin: -13px auto 0px; padding: 0px 12px; background-color: white; width: fit-content; font-weight: 400; font-size: 14px; line-height: 20px; text-align: center; letter-spacing: 0.2px; color: rgb(33, 36, 41);">OR</p>
+                    </div>
+                    
+                    <div style="display:flex; justify-content: space-evenly; width: 100%; margin-top: 10px; gap: 30px;">
+                      {% for item in providersList %}
+                        <a href="{{item.url}}" class="provider-link" style="text-decoration: none;">
+
+                          <div id="provider-btn-div" style="width:100%; height:50px; border: 1px solid gray; padding: 4px; display:flex; justify-content: center; align-items: center; border-radius: 6px; gap: 8px; position: relative;"> 
+                            
+                            <span style="padding: 3px;">
+                              <img  src="{{item.logo}}" />
+                            </span>
+
+                            <div style="text-decoration: none; color: rgb(33, 36, 41);">
+                              {{item.label}}
+                            </div>
+                          </div>
+                        </a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+        </section>
+        {% if config.public_page_footer %}
+        <div class="pen-title">{{config.public_page_footer}}</div>
+        {% endif %}
+      </div>
+  
+      <script src="{% zstatic 'packages/login/js/common.min.js' %}"></script>
+
+
+      <script>
+
+          $('.provider-link').on('click', function(event) {
+
+            event.preventDefault();
+
+            var $spinner = $(this).find('.spinner-border');
+
+            var url = $(this).attr('href');
+
+            $(this).html(`<div id="provider-btn-div" style="width:152px; height:50px; border: 1px solid gray; padding: 4px; display:flex; justify-content: center; align-items: center; border-radius: 6px; gap: 8px; position: relative;"> 
+                           <div class="spinner-border text-primary position-absolute" style="z-index:100" role="status">
+
+                            </div>
+                          </div>`)
+
+            setTimeout(function() {
+
+              window.location.href = url;
+
+            }, 500);
+
+          });
+        
+       
+
+        const usernameLabel = $("<label>Username </label>");
+        const usernameInput = $("#id_auth-username");
+        const submitBtn = $("#submit-id-submit");
+        usernameLabel.insertBefore(usernameInput);
+        usernameLabel.css("font-weight", "400");
+        usernameLabel.css("font-size", "12px");
+        usernameLabel.css("line-height", "16px");
+        usernameLabel.css("color", "#6C747D");
+  
+        const passwordLabel = $("<label>Password </label>");
+        const passwordInput = $("#id_auth-password");
+        passwordLabel.insertBefore(passwordInput);
+        passwordLabel.css("font-weight", "400");
+        passwordLabel.css("font-size", "12px");
+        passwordLabel.css("line-height", "16px");
+        passwordLabel.css("color", "#6C747D");
+  
+        $(".login-form h2").remove();
+  
+        const selectRoleLabel = $("<label>Select your role </label>");
+        const selectRoleInput = $("#id_user_role-user_role");
+        selectRoleLabel.insertBefore(selectRoleInput);
+        selectRoleLabel.css("font-weight", "400");
+        selectRoleLabel.css("font-size", "12px");
+        selectRoleLabel.css("line-height", "16px");
+        selectRoleLabel.css("color", "#6C747D");
+  
+        const errorMessage = $(".alert-danger");
+        const inputDiv = $("#div_id_auth-password");
+        errorMessage.detach().insertAfter(inputDiv);
+  
+        var oldElement = $(".alert-danger ul");
+  
+        var newElement1 = $("<div>").html(oldElement.html());
+  
+        var newElement2 = $(".alert-danger li");
+  
+        var obj = "{{app_theme_config|escapejs}}";
+        var decodedCode = obj.replace(/&#x27;/g, "'");
+        var validJson = decodedCode.replace(/'/g, '"');
+        var app_theme_config = JSON.parse(validJson);
+
+
+        var obj1 = "{{generic_config|escapejs}}";
+        var decodedGeneric = obj1.replace(/&#x27;/g, "'");
+        var validJsonGeneric = decodedGeneric.replace(/'/g, '"');
+        var generic_config = JSON.parse(validJsonGeneric);
+
+        $("#generic_config_id").html(JSON.stringify(generic_config))
+
+        console.log("generic_config", generic_config, app_theme_config);
+  
+        $("#submit-id-submit").css(
+          "background-color",
+          app_theme_config?.color?.primary || "#5048ed"
+        );
+        $('.login-form').on('submit',function(){
+          $(".buttonHolder").html(`<button class="btn" style="background-color:${app_theme_config?.color?.primary || "#5048ed"}; color:#ffffff; height:45px ; width:336px;" id="submit-id-submit text-center" disabled><div class="spinner-border spinner-border-sm text-light" role="status"><span class="sr-only">Loading...</span></div> Loading</button>`)
+        })
+        $("#login-header-underscore").css(
+          "background-color",
+          app_theme_config?.color?.primary || "#5048ed"
+        );
+
+        
+        $(".login-container").css(
+          "background-color",
+          app_theme_config?.color?.primary + "7d" || "rgba(121, 114, 251, 0.8)"
+        );
+  
+        oldElement.replaceWith(newElement2);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorParam = urlParams.get('error');
+
+        
+      </script>
+    </body>
+    <script>
+      $(document).ready(
+        function() {
+
+          function ZToast(type, title, message, duration){
+               $.toast({
+               text : `<div class="z-toast-node ${{"error": "z-toast-error", "success": "z-toast-success", "warning": "z-toast-warning"}[type]}">
+                       <h3 class="title">
+                           ${title}
+                       </h3>
+                       <span class="message">
+                           ${message}
+                       </span>
+                   </div>`,
+               hideAfter : duration,
+               });
+   
+   
+               $(document).find(".jq-toast-single").find(".close-jq-toast-single").html(`<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <g id="Icon/Navigation/16px/Close" clip-path="url(#clip0_1917_1245)">
+                   <path id="Vector" d="M10.5041 0.879019L6.30147 5.08166C6.12945 5.25369 5.85655 5.25369 5.6991 5.08166L1.49588 0.879019C1.32386 0.706994 1.05096 0.706994 0.893507 0.879019C0.721482 1.05104 0.721482 1.32394 0.893507 1.48139L5.09673 5.68461C5.26875 5.85664 5.26875 6.12953 5.09673 6.28699L0.879019 10.5041C0.706994 10.6761 0.706994 10.949 0.879019 11.1065C1.05104 11.2785 1.32394 11.2785 1.48139 11.1065L5.68461 6.90327C5.85664 6.73125 6.12954 6.73125 6.28699 6.90327L10.5041 11.121C10.6761 11.293 10.949 11.293 11.1065 11.121C11.2785 10.949 11.2785 10.6761 11.1065 10.5186L6.91791 6.3009C6.74588 6.12887 6.74588 5.85598 6.91791 5.69853L11.1211 1.49531C11.2932 1.32328 11.2932 1.05038 11.1211 0.892933C10.9491 0.720908 10.6768 0.720908 10.5042 0.878924L10.5041 0.879019Z" fill="#6C747D" stroke="#6C747D" stroke-width="0.4"/>
+                   </g>
+                   <defs>
+                   <clipPath id="clip0_1917_1245">
+                   <rect width="12" height="12" fill="white"/>
+                   </clipPath>
+                   </defs>
+                   </svg>
+               `);
+           }
+   
+        }
+      )
+    </script>
+  </html>

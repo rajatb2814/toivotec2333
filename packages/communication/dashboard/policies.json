@@ -1,0 +1,28 @@
+{
+    "policies": [
+        {
+            "name": "DashboardViewAccess",
+            "description": "Dashboard policy",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "packages.communication.dashboard.views.EmailCrudView",
+                        "type": "view"
+                    },
+                    {
+                        "name": "packages.communication.dashboard.views.SMSCrudView",
+                        "type": "view"
+                    },
+                    {
+                        "name": "packages.communication.dashboard.views.TelephonyCrudView",
+                        "type": "view"
+                    },
+                    {
+                        "name": "packages.communication.dashboard.views.VideoCallCrudView",
+                        "type": "view"
+                    }
+                ]
+            }
+        }
+    ]
+}

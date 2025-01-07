@@ -1,0 +1,28 @@
+{
+    "packages": [
+        {
+            "name": "crud",
+            "version": "0.3.0"
+        },
+        {
+            "name": "frame",
+            "version": "0.5.3"
+        },
+        {
+            "name": "login",
+            "version": "0.6.2"
+        },
+        {
+            "name": "workflow",
+            "version": "0.3.1"
+        },
+        {
+            "name": "communication",
+            "version": "0.2.2"
+        },
+        {
+            "name": "profile360",
+            "version": "0.1.0"
+        }
+    ]
+}

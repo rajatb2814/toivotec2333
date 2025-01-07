@@ -1,0 +1,16 @@
+{
+    "policies": [
+        {
+            "name": "EmailViewAccess",
+            "description": "Email policy",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "packages.communication.email.views.EmailAPIView",
+                        "type": "view"
+                    }
+                ]
+            }
+        }
+    ]
+}

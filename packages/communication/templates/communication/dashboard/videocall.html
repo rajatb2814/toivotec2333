@@ -1,0 +1,179 @@
+{% extends 'frame/_base.html' %}
+{% load zstatic %}
+
+<!DOCTYPE html>
+<html>
+{% block head %}
+
+<head>
+    <title>{{page_title}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Code+Pro:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/cr-1.7.0/date-1.5.1/fc-4.3.0/fh-3.4.0/kt-2.10.0/r-2.5.0/rg-1.4.1/rr-1.4.1/sc-2.2.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.css"
+        rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script
+        src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/cr-1.7.0/date-1.5.1/fc-4.3.0/fh-3.4.0/kt-2.10.0/r-2.5.0/rg-1.4.1/rr-1.4.1/sc-2.2.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.js"></script>
+
+    <script src="https:////cdn.datatables.net/plug-ins/1.13.6/pagination/input.js"></script>
+
+    <link href="https://cdn.datatables.net/fixedcolumns/4.3.0/css/fixedColumns.bootstrap5.min.css">
+    </link>
+    <script src="https://cdn.datatables.net/fixedcolumns/4.3.0/js/dataTables.fixedColumns.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Code+Pro:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.6.0/tinycolor.min.js"
+        integrity="sha512-AvCfbOQzCVi2ctVWF4m89jLwTn/zVPJuS7rhiKyY3zqyCdbPqtvNa0I628GJqPytbowfFjkAGOpq85E5kQc40Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/trumbowyg.min.js"
+        integrity="sha512-YJgZG+6o3xSc0k5wv774GS+W1gx0vuSI/kr0E0UylL/Qg/noNspPtYwHPN9q6n59CTR/uhgXfjDXLTRI+uIryg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="{% zstatic 'packages/communication/css/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css">
+
+</head>
+{% endblock %}
+{% block page_content %}
+
+<body className="" style="width: 100%; display: flex;
+  flex-flow: column;
+  height: 100%; overflow: hidden;">
+    <div class="overlay-spinner" style="display: none;"></div>
+    <form style="margin-bottom: 1em" method="post">{% csrf_token %}</form>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0px 24px; margin-bottom: 24px;">
+        <div class="com-pkg-label">Video Call</div>
+        {% comment %} <div class="com-pkg-cta-btn" id="compose-btn" data-bs-toggle="offcanvas" data-bs-target="#com-pkg-cta-email-modal"
+            aria-controls="com-pkg-cta-email-modal">
+            <div class="com-pkg-cta-btn-text">New Video Call</div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path
+                    d="M16.4225 0.590835C15.604 -0.196945 14.3145 -0.196945 13.4951 0.590835L12.0296 2.06227L5.95743 8.17013C5.6935 8.43734 5.50546 8.77136 5.41404 9.1375L4.81027 11.5669C4.7059 11.9807 4.79733 12.4197 5.05695 12.7572C5.31658 13.0947 5.71679 13.2925 6.14116 13.2951C6.25588 13.2951 6.36974 13.2804 6.48101 13.2526L8.89619 12.6453C9.25931 12.5533 9.59224 12.3642 9.85706 12.097L15.9293 5.98911L17.3938 4.51681C18.202 3.70386 18.202 2.38599 17.3938 1.57304L16.4225 0.590835ZM8.88482 11.1157C8.79598 11.2042 8.68558 11.2675 8.56483 11.2979L6.14964 11.9061L6.75428 9.47668C6.78446 9.35435 6.84656 9.24329 6.93454 9.15394L12.5194 3.53716L14.4713 5.49964L8.88482 11.1157ZM16.4225 3.5346L15.4453 4.51585L13.4934 2.55337L14.4698 1.57211C14.7423 1.30923 15.1727 1.30923 15.4453 1.57211L16.4225 2.55337C16.6917 2.82407 16.6916 3.2639 16.4225 3.5346Z"
+                    fill="white" />
+                <path
+                    d="M3.45011 18H13.1104C14.0247 17.9991 14.9019 17.633 15.5488 16.9823C16.1957 16.3316 16.5597 15.4492 16.5605 14.5296V8.01216C16.5605 7.62868 16.2518 7.31809 15.8705 7.31809C15.4893 7.31809 15.1805 7.62868 15.1805 8.01216V14.5296C15.1805 15.6791 14.2533 16.6118 13.1104 16.6118H3.45011C2.30726 16.6118 1.38005 15.6791 1.38005 14.5296V4.81254C1.38005 3.66297 2.30726 2.73031 3.45011 2.73031H10.1019C10.4832 2.73031 10.792 2.41972 10.792 2.03624C10.792 1.65275 10.4832 1.34216 10.1019 1.34216H3.45011C2.53584 1.34303 1.65864 1.70915 1.01174 2.35984C0.36484 3.01054 0.000861148 3.89287 0 4.81254V14.5296C0.000862473 15.4492 0.36484 16.3316 1.01174 16.9823C1.65864 17.633 2.53582 17.9991 3.45011 18Z"
+                    fill="white" />
+            </svg>
+        </div> {% endcomment %}
+    </div>
+    <div class="com-pkg-tabs-container">
+        <div style="width: 100%; display: flex; flex: 1;">
+            
+            <div id="com-pkg-Telephoney-tab" class="com-pkg-tab-content active">
+                {% comment %} <div style="border-right: 1px solid #DDE2E5; width:100%; margin-bottom: 22px;">
+                   
+    
+                    <div class="com-pkg-telephony-tabs" style="margin-top:24px;">
+                        <!-- Meetings  -->
+                        <div class="com-pkg-tab-item active" data-tab="com-pkg-video-call-incoming">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M2.5 16.875C2.15468 16.875 1.875 16.5953 1.875 16.25V3.75C1.875 3.40468 2.15468 3.125 2.5 3.125C2.84532 3.125 3.125 3.40468 3.125 3.75V16.25C3.125 16.5953 2.84532 16.875 2.5 16.875Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M17.5 16.875C17.1547 16.875 16.875 16.5953 16.875 16.25V3.75C16.875 3.40468 17.1547 3.125 17.5 3.125C17.8453 3.125 18.125 3.40468 18.125 3.75V16.25C18.125 16.5953 17.8453 16.875 17.5 16.875Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M2.5 4.375C2.15468 4.375 1.875 4.09532 1.875 3.75C1.875 3.06094 2.43594 2.5 3.125 2.5C3.47032 2.5 3.75 2.77968 3.75 3.125C3.75 3.47032 3.47032 3.75 3.125 3.75H3.12422C3.12422 4.09532 2.84532 4.375 2.5 4.375Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M16.875 3.75H3.125C2.77968 3.75 2.5 3.47032 2.5 3.125C2.5 2.77968 2.77968 2.5 3.125 2.5H16.875C17.2203 2.5 17.5 2.77968 17.5 3.125C17.5 3.47032 17.2203 3.75 16.875 3.75Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M17.5 4.375C17.1547 4.375 16.875 4.09532 16.875 3.75V3.74922C16.5297 3.74922 16.25 3.46954 16.25 3.12422C16.25 2.77968 16.5297 2.5 16.875 2.5C17.5641 2.5 18.125 3.06094 18.125 3.75C18.125 4.09532 17.8453 4.375 17.5 4.375Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M16.875 17.5C16.5297 17.5 16.25 17.2203 16.25 16.875C16.25 16.5297 16.5297 16.25 16.875 16.25H16.8758C16.8758 15.9047 17.1555 15.625 17.5008 15.625C17.8453 15.625 18.125 15.9047 18.125 16.25C18.125 16.9391 17.5641 17.5 16.875 17.5Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M16.875 17.5H3.125C2.77968 17.5 2.5 17.2203 2.5 16.875C2.5 16.5297 2.77968 16.25 3.125 16.25H16.875C17.2203 16.25 17.5 16.5297 17.5 16.875C17.5 17.2203 17.2203 17.5 16.875 17.5Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M3.125 17.5C2.43594 17.5 1.875 16.9391 1.875 16.25C1.875 15.9047 2.15468 15.625 2.5 15.625C2.84532 15.625 3.125 15.9047 3.125 16.25V16.2508C3.47032 16.2508 3.75 16.5305 3.75 16.8758C3.75 17.2203 3.47032 17.5 3.125 17.5Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M17.5 11.25H12.5C12.1547 11.25 11.875 10.9703 11.875 10.625C11.875 10.2797 12.1547 10 12.5 10H17.5C17.8453 10 18.125 10.2797 18.125 10.625C18.125 10.9703 17.8453 11.25 17.5 11.25Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M7.5 11.25H2.5C2.15468 11.25 1.875 10.9703 1.875 10.625C1.875 10.2797 2.15468 10 2.5 10H7.5C7.84532 10 8.125 10.2797 8.125 10.625C8.125 10.9703 7.84532 11.25 7.5 11.25Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M10 13.75C8.30624 13.75 6.875 12.3188 6.875 10.625C6.875 10.2797 7.15468 10 7.5 10C7.84532 10 8.125 10.2797 8.125 10.625C8.125 11.6414 8.9836 12.5 10 12.5C11.0164 12.5 11.875 11.6414 11.875 10.625C11.875 10.2797 12.1547 10 12.5 10C12.8453 10 13.125 10.2797 13.125 10.625C13.125 12.3188 11.6938 13.75 10 13.75Z"
+                                    fill="currentColor" />
+                            </svg>
+                            Meetings
+                        </div>
+                        
+                    </div>
+                </div> {% endcomment %}
+                <!-- video call tabs -->
+                <div style="width: 100%; height: 100%; overflow: hidden;">
+                    <div id="com-pkg-video-call-incoming" class="com-pkg-individual-tab-content active">
+                        {% comment %} <div class="com-pkg-table-heading"> Meetings </div> {% endcomment %}
+                        <table id="com-pkg-video-call-incoming-table" class="stripe hover order-column display" style="width: 100%"></table>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    
+</body>
+
+<script>
+    var csrf_token = "{{ csrf_token }}";
+    let csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+
+    const config = {{ frame_config| safe}};
+    const app_theme_config = {{ app_theme_config| safe}};
+    const has_export_perm = "{{ has_export_perm }}"
+
+    let newAppThemeConfig = {
+        "color": {
+            "accent": app_theme_config?.color?.primary || config?.config?.color?.primary || "#DDE2E5",
+            "header": "#FFFFFF",
+            "primary": app_theme_config?.color?.primary || config?.config?.color?.primary || "#DDE2E5",
+            "sidebar": app_theme_config?.color?.secondary || config?.config?.color?.secondary || "#E1D6AE",
+            "secondary": app_theme_config?.color?.secondary || config?.config?.color?.secondary || "#E1D6AE",
+            "background": app_theme_config?.color?.background || config?.config?.color?.background || "#FFFFFF",
+            "typography": "#212429",
+            "headerBorder": "#DDE2E5"
+        }
+    } 
+</script>
+
+<script src="{% zstatic 'packages/communication/js/videocall.v1.0.0.min.js' %}"></script>
+{% endblock %}
+
+</html>

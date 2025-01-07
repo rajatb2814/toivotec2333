@@ -1,0 +1,19 @@
+{
+    "policies": [
+        {
+            "name": "PaediatricianCrudViewAccessPolicy",
+            "description": "PaediatricianCrudView access policy",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "paediatricians.views.PaediatricianCrudView",
+                        "type": "view"
+                    }
+                ]
+            },
+            "roles": [
+                "Admin"
+            ]
+        }
+    ]
+}

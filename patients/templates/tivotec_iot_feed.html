@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enhanced Speech Monitoring Feeds</title>
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f0f2f5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .date-time {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .time {
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #1a202c;
+      letter-spacing: -0.5px;
+    }
+
+    .date {
+      font-size: 0.85em;
+      color: #718096;
+      font-weight: 500;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .tag.improvement {
+      background-color: #c6f6d5;
+      color: #276749;
+    }
+
+    .tag.worse {
+      background-color: #fed7d7;
+      color: #9b2c2c;
+    }
+
+    .tag.stable {
+      background-color: #bee3f8;
+      color: #2c5282;
+    }
+
+    .data-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .data-item {
+      display: flex;
+      align-items: center;
+      margin: 12px 0;
+      position: relative;
+    }
+
+    .data-item i {
+      width: 24px;
+      margin-right: 12px;
+      color: #4a5568;
+    }
+
+    .metric-container {
+      flex-grow: 1;
+    }
+
+    .metric-label {
+      display: block;
+      font-size: 0.8em;
+      font-weight: 500;
+      color: #64748b;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .metric-bar {
+      height: 6px;
+      background-color: #edf2f7;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .metric-value {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    .metric-number {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    /* Mini chart styles */
+    .mini-chart {
+      width: 100%;
+      height: 40px;
+      margin-top: 15px;
+      border-top: 1px solid #edf2f7;
+      padding-top: 10px;
+    }
+
+    .mini-chart svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .trend-line {
+      fill: none;
+      stroke: #4299e1;
+      stroke-width: 2;
+    }
+
+    .trend-dot {
+      fill: #4299e1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  </div>
+
+  <script>
+    const data = [
+      { time: "9:00", fluency: 85, stutter: 4.2, pitch: 210, wpm: 76, status: "improvement" },
+      { time: "9:05", fluency: 88, stutter: 3.8, pitch: 220, wpm: 78, status: "improvement" },
+      { time: "9:10", fluency: 83, stutter: 4.0, pitch: 215, wpm: 75, status: "worse" },
+      { time: "9:15", fluency: 85, stutter: 3.9, pitch: 210, wpm: 77, status: "stable" },
+      { time: "9:20", fluency: 90, stutter: 3.2, pitch: 225, wpm: 82, status: "improvement" },
+      { time: "9:25", fluency: 80, stutter: 4.5, pitch: 205, wpm: 73, status: "worse" },
+      { time: "9:30", fluency: 85, stutter: 3.7, pitch: 215, wpm: 76, status: "stable" },
+      { time: "9:35", fluency: 87, stutter: 3.4, pitch: 220, wpm: 79, status: "improvement" },
+      { time: "9:40", fluency: 92, stutter: 3.0, pitch: 230, wpm: 85, status: "improvement" },
+      { time: "9:45", fluency: 82, stutter: 4.1, pitch: 210, wpm: 75, status: "worse" }
+    ];
+
+    function createMetricBar(value, max, color) {
+      const percentage = (value / max) * 100;
+      return `
+        <div class="metric-bar">
+          <div class="metric-value" style="width: ${percentage}%; background-color: ${color};"></div>
+        </div>
+      `;
+    }
+
+    function createMiniChart(metric, data) {
+      const values = data.map(d => d[metric]);
+      const max = Math.max(...values);
+      const min = Math.min(...values);
+      const range = max - min;
+      
+      const width = 100;
+      const height = 40;
+      const points = values.map((v, i) => {
+        const x = (i / (values.length - 1)) * width;
+        const y = height - ((v - min) / range) * height;
+        return `${x},${y}`;
+      });
+
+      return `
+        <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+          <polyline
+            points="${points.join(' ')}"
+            class="trend-line"
+          />
+          ${points.map((point, i) => {
+            const [x, y] = point.split(',');
+            return `<circle cx="${x}" cy="${y}" r="1.5" class="trend-dot"/>`;
+          }).join('')}
+        </svg>
+      `;
+    }
+
+    function createCard(item, index) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      
+      const metrics = {
+        fluency: { color: '#48bb78', max: 100, icon: 'fa-comment' },
+        stutter: { color: '#e53e3e', max: 10, icon: 'fa-microphone-slash' },
+        pitch: { color: '#805ad5', max: 250, icon: 'fa-wave-square' },
+        wpm: { color: '#3182ce', max: 100, icon: 'fa-keyboard' }
+      };
+
+      card.innerHTML = `
+        <div class="card-header">
+          <div class="date-time">
+            <span class="time">${item.time}</span>
+            <span class="date">07th Jan '25</span>
+          </div>
+          <div class="tags">
+            <span class="tag ${item.status}">${item.status}</span>
+          </div>
+        </div>
+        <ul class="data-list">
+          ${Object.entries(metrics).map(([key, config]) => `
+            <li class="data-item">
+              <i class="fas ${config.icon}"></i>
+              <div class="metric-container">
+                <span class="metric-label">${key.toUpperCase()}</span>
+                ${createMetricBar(item[key], config.max, config.color)}
+              </div>
+              <span class="metric-number">${item[key]}${key === 'stutter' ? '%' : ''}</span>
+            </li>
+          `).join('')}
+        </ul>
+        <div class="mini-chart">
+          ${createMiniChart('fluency', data.slice(Math.max(0, index - 5), index + 1))}
+        </div>
+      `;
+
+      return card;
+    }
+
+    function initializeDashboard() {
+      const container = document.querySelector('.container');
+      data.forEach((item, index) => {
+        container.appendChild(createCard(item, index));
+      });
+    }
+
+    // Initialize the dashboard when the page loads
+    document.addEventListener('DOMContentLoaded', initializeDashboard);
+  </script>
+</body>
+</html>

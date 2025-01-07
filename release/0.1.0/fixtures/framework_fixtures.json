@@ -1,0 +1,116 @@
+[
+    {
+        "model": "appauth.userrolemodel",
+        "fields": {
+            "created_at": "2025-01-07 05:54:03",
+            "modified_at": "2025-01-07 05:54:03",
+            "created_by": "",
+            "modified_by": "",
+            "name": "Admin",
+            "policies": [
+                [
+                    "ClinicCrudViewAccessPolicy",
+                    "clinics"
+                ],
+                [
+                    "PaediatricianCrudViewAccessPolicy",
+                    "paediatricians"
+                ],
+                [
+                    "TherapistCrudViewAccessPolicy",
+                    "therapists"
+                ],
+                [
+                    "AllowFromAnywhere",
+                    null
+                ],
+                [
+                    "FrameRouterViewAccess",
+                    "packages.frame.router"
+                ]
+            ],
+            "is_active": true
+        },
+        "pk": 3
+    },
+    {
+        "model": "appauth.userrolemodel",
+        "fields": {
+            "created_at": "2025-01-07 05:54:03",
+            "modified_at": "2025-01-07 05:54:03",
+            "created_by": "",
+            "modified_by": "",
+            "name": "Therapist",
+            "policies": [
+                [
+                    "PatientCrudViewAccessPolicy",
+                    "patients"
+                ],
+                [
+                    "AllowFromAnywhere",
+                    null
+                ],
+                [
+                    "FrameRouterViewAccess",
+                    "packages.frame.router"
+                ]
+            ],
+            "is_active": true
+        },
+        "pk": 5
+    },
+    {
+        "model": "appauth.userrolemodel",
+        "fields": {
+            "created_at": "2025-01-07 05:54:03",
+            "modified_at": "2025-01-07 05:54:03",
+            "created_by": "",
+            "modified_by": "",
+            "name": "Paediatrician",
+            "policies": [
+                [
+                    "PatientCrudViewAccessPolicy",
+                    "patients"
+                ],
+                [
+                    "AllowFromAnywhere",
+                    null
+                ],
+                [
+                    "FrameRouterViewAccess",
+                    "packages.frame.router"
+                ]
+            ],
+            "is_active": true
+        },
+        "pk": 6
+    },
+    {
+        "model": "appauth.userrolemodel",
+        "fields": {
+            "created_at": "2025-01-07 05:54:05",
+            "created_by": "",
+            "modified_at": "2025-01-07 05:54:05",
+            "modified_by": "",
+            "name": "AnonymousUsers",
+            "config": null,
+            "is_active": true,
+            "is_default": true,
+            "policies": [
+                [
+                    "AllowFromAnywhere",
+                    null
+                ],
+                [
+                    "LoginViewAccess",
+                    "packages.login.appauth"
+                ],
+                [
+                    "AppOpenIDLogin",
+                    "packages.login.appauth"
+                ]
+            ]
+        },
+        "pk": 1
+    }
+]

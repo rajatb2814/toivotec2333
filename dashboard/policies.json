@@ -1,0 +1,20 @@
+{
+    "policies": [
+        {
+            "name": "DashboardPatientDataViewAccessPolicy",
+            "description": "Policy for accessing the Dashboard View",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "dashboard.views.DashboardPatientData",
+                        "type": "view"
+                    }
+                ]
+            },
+            "roles": [
+                "Admin",
+                "Therapist"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev:table": "parcel watch table.js --dist-dir ../static/js/table --no-hmr --no-source-maps",
+    "dev:detail": "parcel watch detail.js --dist-dir ../static/js/detail --no-hmr --no-source-maps",
+    "build:table": "parcel build table.js --dist-dir ../static/js/table",
+    "build:detail": "parcel build detail.js --dist-dir ../static/js/detail",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sukuna28",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "@parcel/transformer-svg": "^2.12.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "policies": [
+        {
+            "name": "TelephonyViewAccess",
+            "description": "Telephony policy",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "packages.communication.telephony.views.TelephonyORMView",
+                        "type": "view"
+                    },
+                    {
+                        "name": "packages.communication.telephony.views.TelephonyAPIView",
+                        "type": "view"
+                    }
+                ]
+            }
+        }
+    ]
+}

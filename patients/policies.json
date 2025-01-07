@@ -1,0 +1,53 @@
+{
+    "policies": [
+        {
+            "name": "PatientProfileViewAccessPolicy",
+            "description": "Policy for accessing the Doctor View",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "patients.views.PatientProfileView",
+                        "type": "view"
+                    }
+                ]
+            },
+            "roles": [
+                "Admin",
+                "Therapist"
+            ]
+        },
+        {
+            "name": "PatientCrudViewAccessPolicy",
+            "description": "PatientCrudView access policy",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "patients.views.PatientCrudView",
+                        "type": "view"
+                    }
+                ]
+            },
+            "roles": [
+                "Admin",
+                "Therapist",
+                "Paediatrician"
+            ]
+        },
+        {
+            "name": "TivotecIOTFeedViewAccessPolicy",
+            "description": "TivotecIOTFeed access policy",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "patients.views.TivotecIOTFeed",
+                        "type": "view"
+                    }
+                ]
+            },
+            "roles": [
+                "Admin",
+                "Therapist"
+            ]
+        }
+    ]
+}

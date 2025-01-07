@@ -1,0 +1,233 @@
+{% extends 'frame/_base.html' %}
+{% load crispy_forms_tags %}
+{% load zstatic %} 
+
+{% block head %}
+
+    <title>Charts Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f7fc;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+        }
+        .card-header {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .chart-container {
+            width: 100%;
+            height: 400px;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .col {
+            flex: 0 0 48%; /* 2 charts per row with some spacing */
+            margin-bottom: 20px;
+        }
+    </style>
+
+{% endblock %}
+{% block page_content %}
+
+    <h1>Charts Dashboard</h1>
+    <div class="row">
+        <!-- Patient Enrollment Trend Chart -->
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Patient Enrollment Trend</div>
+                <div id="patient_enrollment_trend_chart" class="chart-container"></div>
+            </div>
+        </div>
+
+        <!-- Average Cycles Indications Chart -->
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Average Cycles Indications</div>
+                <div id="average_cycles_indications_chart" class="chart-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Total Orders Chart -->
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Total Orders</div>
+                <div id="total_orders_chart" class="chart-container"></div>
+            </div>
+        </div>
+
+        <!-- Dosage Breakup Chart -->
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Dosage Breakup</div>
+                <div id="dosage_breakup_chart" class="chart-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Territory Breakup Chart -->
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Territory Breakup</div>
+                <div id="territory_breakup_chart" class="chart-container"></div>
+            </div>
+        </div>
+
+        <!-- Another Bar Chart -->
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Another Bar Chart</div>
+                <div id="another_bar_chart" class="chart-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Scatter Plot Chart -->
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Scatter Plot Example</div>
+                <div id="scatter_plot_chart" class="chart-container"></div>
+            </div>
+        </div>
+
+        <!-- Line Chart Example -->
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Line Chart Example</div>
+                <div id="line_chart_example" class="chart-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Patient Enrollment Trend Chart
+        let patientEnrollmentTrendDOM = document.getElementById("patient_enrollment_trend_chart");
+        let patientEnrollment = echarts.init(patientEnrollmentTrendDOM);
+        patientEnrollment.setOption({
+            title: { text: 'Patient Enrollment Trend' },
+            tooltip: { trigger: 'axis' },
+            xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May'] },
+            yAxis: { type: 'value' },
+            series: [{ name: 'Enrollment Count', type: 'line', data: [120, 132, 101, 134, 90] }]
+        });
+
+        // Average Cycles Indications Chart (Pie)
+        let averageCyclesIndicationsDOM = document.getElementById('average_cycles_indications_chart');
+        let averageCyclesIndications = echarts.init(averageCyclesIndicationsDOM);
+        averageCyclesIndications.setOption({
+            title: { text: 'Average Cycles Indications' },
+            tooltip: { trigger: 'item' },
+            series: [{
+                name: 'Cycles',
+                type: 'pie',
+                radius: '55%',
+                data: [
+                    { value: 35, name: 'Indication A' },
+                    { value: 45, name: 'Indication B' },
+                    { value: 20, name: 'Indication C' }
+                ]
+            }]
+        });
+
+        // Total Orders Chart (Bar)
+        let totalOrdersDOM = document.getElementById('total_orders_chart');
+        let totalOrders = echarts.init(totalOrdersDOM);
+        totalOrders.setOption({
+            title: { text: 'Total Orders' },
+            tooltip: { trigger: 'axis' },
+            xAxis: { type: 'category', data: ['Q1', 'Q2', 'Q3', 'Q4'] },
+            yAxis: { type: 'value' },
+            series: [{ name: 'Orders', type: 'bar', data: [500, 700, 800, 600] }]
+        });
+
+        // Dosage Breakup Chart (Pie)
+        let dosageBreakupDOM = document.getElementById('dosage_breakup_chart');
+        let dosageBreakup = echarts.init(dosageBreakupDOM);
+        dosageBreakup.setOption({
+            title: { text: 'Dosage Breakup' },
+            tooltip: { trigger: 'item' },
+            series: [{
+                name: 'Dosage',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    { value: 60, name: 'Dosage 1' },
+                    { value: 30, name: 'Dosage 2' },
+                    { value: 10, name: 'Dosage 3' }
+                ]
+            }]
+        });
+
+        // Territory Breakup Chart (Pie)
+        let territoryBreakupDOM = document.getElementById('territory_breakup_chart');
+        let territoryBreakup = echarts.init(territoryBreakupDOM);
+        territoryBreakup.setOption({
+            title: { text: 'Territory Breakup' },
+            tooltip: { trigger: 'item' },
+            series: [{
+                name: 'Territory',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    { value: 70, name: 'Territory 1' },
+                    { value: 20, name: 'Territory 2' },
+                    { value: 10, name: 'Territory 3' }
+                ]
+            }]
+        });
+
+        // Another Bar Chart
+        let anotherBarChartDOM = document.getElementById('another_bar_chart');
+        let anotherBarChart = echarts.init(anotherBarChartDOM);
+        anotherBarChart.setOption({
+            title: { text: 'Another Bar Chart' },
+            tooltip: { trigger: 'axis' },
+            xAxis: { type: 'category', data: ['A', 'B', 'C', 'D', 'E'] },
+            yAxis: { type: 'value' },
+            series: [{ name: 'Sample Data', type: 'bar', data: [10, 20, 30, 40, 50] }]
+        });
+
+        // Scatter Plot Chart
+        let scatterPlotChartDOM = document.getElementById('scatter_plot_chart');
+        let scatterPlotChart = echarts.init(scatterPlotChartDOM);
+        scatterPlotChart.setOption({
+            title: { text: 'Scatter Plot Example' },
+            tooltip: {},
+            xAxis: { type: 'value' },
+            yAxis: { type: 'value' },
+            series: [{
+                symbolSize: 20,
+                data: [[10, 20], [20, 30], [30, 40], [40, 50], [50, 60]],
+                type: 'scatter'
+            }]
+        });
+
+        // Line Chart Example
+        let lineChartExampleDOM = document.getElementById('line_chart_example');
+        let lineChartExample = echarts.init(lineChartExampleDOM);
+        lineChartExample.setOption({
+            title: { text: 'Line Chart Example' },
+            tooltip: { trigger: 'axis' },
+            xAxis: { type: 'category', data: ['2015', '2016', '2017', '2018', '2019'] },
+            yAxis: { type: 'value' },
+            series: [{ name: 'Sales', type: 'line', data: [150, 250, 350, 450, 550] }]
+        });
+    </script>
+
+{% endblock %}

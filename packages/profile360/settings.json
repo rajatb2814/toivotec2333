@@ -1,0 +1,16 @@
+{
+    "version": "1.0.0",
+    "modules": [ 
+        {
+            "name": "base",
+            "path": "base"
+        }
+    ],
+    "app_routes": [
+        
+    ],
+    "package_routes": []
+    
+}
+
+

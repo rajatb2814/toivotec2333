@@ -1,0 +1,20 @@
+{
+    "policies": [
+        {
+            "name": "SMSViewAccess",
+            "description": "SMS policy",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "packages.communication.sms.views.SMSORMView",
+                        "type": "view"
+                    },
+                    {
+                        "name": "packages.communication.sms.views.SMSAPIView",
+                        "type": "view"
+                    }
+                ]
+            }
+        }
+    ]
+}

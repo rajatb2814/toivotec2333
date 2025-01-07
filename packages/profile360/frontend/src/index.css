@@ -1,0 +1,281 @@
+ @font-face {
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 400;
+	src: url('./assests/fonts/Lato/Lato-Regular.ttf') format('truetype');
+}
+ @font-face {
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 600;
+	src: url('./assests/fonts/Lato/Lato-Semibold.ttf') format('truetype');
+}
+ @font-face {
+	font-family: 'Lato';
+	font-style: normal;
+	font-weight: 700;
+	src: url('./assests/fonts/Lato/Lato-Bold.ttf') format('truetype');
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.tippy-content{
+padding:0px!important;
+}
+a{
+  background: transparent !important;
+}
+a:hover{
+  filter: brightness(100%)!important;
+}
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+    display: block;
+    width: 100%;
+    /* border:1px solid rgb(221 226 229); */
+
+    height:42px;
+
+}
+/* .react-datepicker-wrapper, */
+/* .react-datepicker__input-container, */
+.react-datepicker__input-container input {
+  border:1px solid rgb(221 226 229);
+  border-radius: 4px;
+
+}
+
+.select-field-shadow{
+  box-shadow: 2px 2px 10px gray;
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite
+}
+.loader::before , .loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #b81f1f;
+  animation: prixClipFix 2s linear infinite ;
+}
+.loader::after{
+  border-color: #b81f1f;
+  animation: prixClipFix 2s linear infinite , rotate 0.5s linear infinite reverse;
+  inset: 6px;
+}
+
+@keyframes rotate {
+  0%   {transform: rotate(0deg)}
+  100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+.global-overlay-spinner {
+	/* position: fixed; */
+	/* z-index: 1051; */
+	overflow: show;
+	margin: auto;
+	/* top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0; */
+	width: 50px;
+	height: 50px;
+}
+
+/* Transparent Overlay */
+.global-overlay-spinner:before {
+	content: '';
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.global-overlay-spinner:not(:required) {
+	/* hide "loading..." text */
+	font: 0/0 a;
+	color: #fff;
+	text-shadow: none;
+	background-color: #fff;
+	border: 0;
+}
+.program-card-opacity-gradient{
+  background:linear-gradient(180deg, rgba(255, 255, 255, 0.87) 0%, #FFFFFF 100%);
+}
+
+.global-overlay-spinner:not(:required):after {
+	content: '';
+	display: block;
+	font-size: 10px;
+	width: 50px;
+	height: 50px;
+	margin-top: -0.5em;
+	border: 5px solid rgb(75 85 99);
+	border-radius: 100%;
+	border-bottom-color: #fff;
+	-webkit-animation: spin 1s linear 0s infinite;
+	animation: spin 1s linear 0s infinite;
+  box-shadow: 0px 4px 24px rgb(0 0 0 / 32%);
+}
+
+
+.overlay-spinner {
+  border: 4px solid #fff;
+  border-radius: 50%;
+  border-top: 4px solid rgb(75 85 99) ;
+  background-color: white;
+  
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 0.8s linear infinite;
+  animation: spin 0.8s linear infinite;
+  /* box-shadow: 0px 4px 24px rgb(0 0 0 / 32%); */
+}
+
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.no-overflow{
+  overflow: hidden !important;
+}
+.transition-height {
+  transition: height 10s ease;
+}
+.open{
+height: auto;
+}
+
+.closed {
+height: 0;
+}
+.invisible-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* all:initial; */
+}
+.invisible-scrollbar{
+    scrollbar-width: none;
+    /* all:initial; */
+}
+.custom-scrollbar {
+  background-color: #ffff;
+  scrollbar-color: rgba(0, 0, 0, 0.2) #ffff;
+  scrollbar-face-color:rgba(0, 0, 0, 0.2);
+  scrollbar-width: thin;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+  width: 7px!important;
+  }
+  /* Track / */
+  .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+  }
+  /* / Handle / */
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  }
+  /* / Handle on hover */
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background:rgba(0, 0, 0, 0.3);
+  }
+  .DateInput_input__focused {
+    border-bottom: 0px !important;
+  }
+  
+  .DateInput_input__disabled{
+    font-style: normal !important;
+    cursor: auto !important;
+    color: #A3ABB1 !important;
+    background-color: #F0F3F4 !important;
+
+  }
+  .DateInput_input {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    letter-spacing: 0.2px !important;
+    border: 1px solid #DDE2E5 !important;
+    border-radius: 4px !important;
+    padding: 16px 16px 13px !important;
+    width: 100%;
+    cursor: pointer;
+    color:#212429
+  }
+  .CalendarDay__selected{
+    background-color: #5048ED !important;
+    border: 1px double #5048ED !important;
+    color: white !important;
+  }
+  .SingleDatePicker,.SingleDatePickerInput,.DateInput{width:100% !important; cursor: pointer !important;}
+  .SingleDatePicker_picker{
+    left: 15px !important;
+  }
+  .DateInput_fang{
+    left:45px !important;
+  }
+html,body,#root{
+    height: 100%;
+    font-stretch: unset;
+}
+/* 
+.test>:last-child:only-child{
+     
+}
+.test>:last-child>:last-child>:last-child{
+background-color: black;} */
+
+
+.filterCheckbox{
+-moz-transform: scale(0); /* FF */
+-webkit-transform: scale(0); /* Safari and Chrome */}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield ;
+}

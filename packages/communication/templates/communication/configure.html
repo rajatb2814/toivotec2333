@@ -1,0 +1,214 @@
+{% load zstatic %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Communication</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Sans+3:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="{% zstatic 'packages/communication/css/bootstrap/5.3.2/bootstrap.min.css' %}" />
+    <script src="{% zstatic 'packages/communication/js/jquery/3.7.1/jquery.min.js' %}"></script>
+    <script src="{% zstatic 'packages/communication/js/popper/2.11.8/popper.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% zstatic 'packages/communication/css/styles.css' %}" />
+</head>
+
+<body>
+    <div class="overlay-spinner" style="display: none;"></div>
+    <main class="package-main d-flex flex-column" style="gap: 32px;">
+        <section class="intro-section">
+            <div class="d-flex" style="gap: 32px;">
+                <div class="d-flex flex-column" style="gap: 4px;">
+                    <h2 class="package-title">
+                        Communication
+                    </h2>
+                    <span class="package-status">Installed</span>
+                </div>
+                <div>
+                    <!-- Communication Documentation Link
+                        <div class="d-flex" style="gap: 24px;">
+                        <a href="" target="_blank" class="d-flex align-items-center view-docs-anchor" style="gap: 6px;"
+                            alt="#">
+                            <span class="view-docs-anchor-label">
+                                view docs
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
+                                fill="none">
+                                <g clip-path="url(#clip0_6325_8385)">
+                                    <path
+                                        d="M2.74575 11.2364H8.2721C9.37725 11.2364 10.2677 10.3459 10.2677 9.24073V5.86352C10.2677 5.60267 10.068 5.40299 9.8072 5.40299C9.54636 5.40299 9.34667 5.60267 9.34667 5.86352V9.24073C9.34667 9.83917 8.87055 10.3153 8.2721 10.3153H2.74575C2.14731 10.3153 1.67118 9.83917 1.67118 9.24073V3.71438C1.67118 3.11594 2.14731 2.63981 2.74575 2.63981H6.12297C6.38381 2.63981 6.58349 2.44012 6.58349 2.17928C6.58349 1.91844 6.38381 1.71875 6.12297 1.71875H2.74575C1.6406 1.71875 0.750122 2.60923 0.750122 3.71438V9.24073C0.750122 10.3459 1.6406 11.2364 2.74575 11.2364Z"
+                                        fill="#212429" />
+                                    <path
+                                        d="M11.2499 4.03745V1.22807C11.2499 1.19749 11.2499 1.16691 11.2343 1.13573C11.2343 1.12014 11.2343 1.10514 11.2187 1.10514C11.2187 1.08955 11.2031 1.07456 11.2031 1.05897C11.2031 1.04338 11.1875 1.02839 11.1726 1.0128C11.1726 0.997208 11.157 0.982216 11.157 0.982216C11.1264 0.936044 11.0802 0.889871 11.034 0.859289L11.0034 0.843698C10.9735 0.798725 10.9429 0.783134 10.9123 0.783134L10.8661 0.767544C10.8355 0.767544 10.805 0.751953 10.7738 0.751953L7.96502 0.752553C7.70417 0.752553 7.50449 0.952238 7.50449 1.21308C7.50449 1.47393 7.70417 1.67361 7.96502 1.67361H9.66928L5.44715 5.91018C5.26306 6.09426 5.26306 6.3863 5.44715 6.55479C5.63124 6.73888 5.92327 6.73888 6.09177 6.55479L10.3289 2.33327V4.03754C10.3289 4.29838 10.5286 4.49807 10.7895 4.49807C11.0353 4.49807 11.235 4.2834 11.25 4.03754L11.2499 4.03745Z"
+                                        fill="#212429" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_6325_8385">
+                                        <rect width="12" height="12" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+                                fill="none">
+                                <rect y="22" width="22" height="22" rx="2" transform="rotate(-90 0 22)"
+                                    fill="#F0F3F4" />
+                                <circle cx="11" cy="17" r="2" transform="rotate(-90 11 17)" fill="#6C747D" />
+                                <circle cx="11" cy="11" r="2" transform="rotate(-90 11 11)" fill="#6C747D" />
+                                <circle cx="11" cy="5" r="2" transform="rotate(-90 11 5)" fill="#6C747D" />
+                            </svg>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+        <section class="d-flex flex-column" style="gap: 24px;">
+            <div class="packages intro-detail-section d-flex flex-column" style="gap: 4px;">
+                <h3 class="packages-headline">Communication Packages</h3>
+                <table class="packages-table">
+                    <tr>
+                        <td class="each-cell each-cell-label">Email</td>
+                        <td class="each-cell each-cell-toggle">
+                        </td>
+                        <td class="each-cell each-cell-last"></td>
+                    </tr>
+                    <tr>
+                        <td class="each-cell each-cell-label">SMS</td>
+                        <td class="each-cell each-cell-toggle">
+                        </td>
+                        <td class="each-cell each-cell-last"></td>
+                    </tr>
+                    <tr>
+                        <td class="each-cell each-cell-label">Telephony</td>
+                        <td class="each-cell each-cell-toggle">
+                        </td>
+                        <td class="each-cell each-cell-last"></td>
+                    </tr>
+                    <tr>
+                        <td class="each-cell each-cell-label">Video Call</td>
+                        <td class="each-cell each-cell-toggle">
+                        </td>
+                        <td class="each-cell each-cell-last"></td>
+                    </tr>
+                    <tr>
+                        <td class="each-cell each-cell-label">iMessage</td>
+                        <td class="each-cell each-cell-toggle">
+                        </td>
+                        <td class="each-cell each-cell-last"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="package-tabs d-flex flex-column" style="gap: 24px;">
+                <div class="side-section-padding">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link nav-link-first" id="email-tab" data-bs-toggle="tab"
+                                data-bs-target="#email" type="button" role="tab" aria-controls="email"
+                                aria-selected="false" disabled>Email</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="sms-tab" data-bs-toggle="tab" data-bs-target="#sms"
+                                type="button" role="tab" aria-controls="sms" aria-selected="false" disabled>SMS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="telephony-tab" data-bs-toggle="tab" data-bs-target="#telephony"
+                                type="button" role="tab" aria-controls="telephony"
+                                aria-selected="false">Telephony</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="video_call-tab" data-bs-toggle="tab"
+                                data-bs-target="#video_call" type="button" role="tab" aria-controls="video_call"
+                                aria-selected="false">Video Call</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="imessage-tab" data-bs-toggle="tab" data-bs-target="#imessage"
+                                type="button" role="tab" aria-controls="imessage" aria-selected="false"
+                                disabled>iMessage</button>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane show active fade" id="email" role="tabpanel" aria-labelledby="email-tab">
+                        <div class="d-flex justify-content-between sub-title-padding">
+                            <h4 class="each-tab-title">Email</h4>
+                            <button type="button" class="each-tab-primary-button new-smtp-imap-button form-modal-button"
+                                data-modal="package-dynamic-form-modal">
+                                <span class="each-tab-primary-label">
+                                    New SMTP/IMAP
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M12.3077 15.5656C13.1721 15.5656 14.0008 15.2225 14.6116 14.6116C15.2225 14.0008 15.5656 13.1721 15.5656 12.3077V3.25792C15.5656 2.39355 15.2225 1.56482 14.6116 0.953971C14.0008 0.343124 13.1721 0 12.3077 0H3.25792C1.45895 0 0 1.45895 0 3.25792V12.3077C0 13.1721 0.343098 14.0008 0.953971 14.6116C1.56484 15.2225 2.39355 15.5656 3.25792 15.5656H12.3077ZM20 3.25792V14.2986C20 15.8105 19.3993 17.2613 18.3303 18.3304C17.2613 19.3995 15.8105 20 14.2986 20H3.25787C2.80786 20 2.44339 19.6356 2.44339 19.1856C2.44339 18.7356 2.80786 18.3711 3.25787 18.3711H14.2986C15.3788 18.3711 16.4142 17.9425 17.1778 17.1779C17.9424 16.4143 18.371 15.3789 18.371 14.2987V3.25794C18.371 2.80793 18.7355 2.44346 19.1855 2.44346C19.6355 2.44346 20 2.80791 20 3.25792ZM3.71041 7.7828C3.71041 7.7828 4.07488 6.96833 4.52489 6.96833C4.9749 6.96833 6.96833 6.96833 6.96833 6.96833V4.52489C6.96833 4.07488 7.3328 3.71041 7.78281 3.71041C8.23282 3.71041 8.59729 4.07488 8.59729 4.52489V6.96833H11.0407C11.4907 6.96833 11.8552 7.33279 11.8552 7.7828C11.8552 8.23281 11.4907 8.59729 11.0407 8.59729H8.59729V11.0407C8.59729 11.4907 8.23282 11.8552 7.78281 11.8552C7.3328 11.8552 6.96833 11.4907 6.96833 11.0407V8.59729C6.96833 8.59729 4.9749 8.59729 4.52489 8.59729C4.07488 8.59729 3.71041 7.7828 3.71041 7.7828Z"
+                                        fill="white" />
+                                </svg>
+                            </button>
+                        </div>
+                        <table class="each-package-table"></table>
+                    </div>
+                    <div class="tab-pane fade" id="sms" role="tabpanel" aria-labelledby="sms-tab">
+                        <div class="d-flex justify-content-between sub-title-padding">
+                            <h4 class="each-tab-title">SMS</h4>
+                        </div>
+                        <table class="each-package-table"></table>
+                    </div>
+                    <div class="tab-pane fade" id="telephony" role="tabpanel" aria-labelledby="telephony-tab">
+                        <div class="d-flex justify-content-between sub-title-padding">
+                            <h4 class="each-tab-title">Telephony</h4>
+                        </div>
+                        <table class="each-package-table">
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="video_call" role="tabpanel" aria-labelledby="video_call-tab">
+                        <div class="d-flex justify-content-between sub-title-padding">
+                            <h4 class="each-tab-title">Video Call</h4>
+                        </div>
+                        <table class="each-package-table"></table>
+                    </div>
+                    <div class="tab-pane fade" id="imessage" role="tabpanel" aria-labelledby="imessage-tab">
+                        <div class="d-flex justify-content-between sub-title-padding">
+                            <h4 class="each-tab-title">iMessage</h4>
+                        </div>
+                        <table class="each-package-table"></table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="package-dynamic-form-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <button type="button" data-modal="package-dynamic-form-modal" class="modal-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <g clip-path="url(#clip0_5158_6104)">
+                            <path
+                                d="M17.7213 1.22117L10.5168 8.42571C10.2219 8.72061 9.75409 8.72061 9.48417 8.42571L2.27865 1.22117C1.98375 0.926275 1.51593 0.926275 1.24601 1.22117C0.951112 1.51607 0.951112 1.9839 1.24601 2.25382L8.45153 9.45933C8.74643 9.75423 8.74643 10.2221 8.45153 10.492L1.22117 17.7213C0.926275 18.0162 0.926275 18.4841 1.22117 18.754C1.51607 19.0489 1.9839 19.0489 2.25382 18.754L9.45933 11.5485C9.75423 11.2536 10.2221 11.2536 10.492 11.5485L17.7213 18.7788C18.0162 19.0737 18.4841 19.0737 18.754 18.7788C19.0489 18.4839 19.0489 18.0161 18.754 17.7462L11.5736 10.5158C11.2787 10.2209 11.2787 9.7531 11.5736 9.48319L18.7791 2.27767C19.074 1.98277 19.074 1.51494 18.7791 1.24503C18.4842 0.950129 18.0173 0.950129 17.7214 1.22101L17.7213 1.22117Z"
+                                fill="black" stroke="black" stroke-width="0.4" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_5158_6104">
+                                <rect width="20" height="20" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </button>
+                <div id="zelthy-dynamic-form" class="zelthy-dynamic-form"></div>
+            </div>
+        </div>
+    </main>
+    <script>
+        var csrf_token = "{{ csrf_token }}";
+    </script>
+    <script src="{% zstatic 'packages/communication/js/bootstrap/5.3.2/bootstrap.min.js' %}"></script>
+    <script src="{% zstatic 'packages/communication/js/popper/2.11.8/popper.min.js' %}"></script>
+    <script src="{% zstatic 'packages/communication/js/configure.js' %}"></script>
+    <script src="{% zstatic 'packages/communication/js/zfrom_lib.v1.0.35.min.js' %}"></script>
+</body>
+
+</html>

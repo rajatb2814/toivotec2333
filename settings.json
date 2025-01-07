@@ -1,0 +1,81 @@
+{
+    "version": "0.1.0",
+    "modules": [
+        {
+            "name": "clinics",
+            "path": "clinics"
+        },
+        {
+            "name": "paediatricians",
+            "path": "paediatricians"
+        },
+        {
+            "name": "therapists",
+            "path": "therapists"
+        },
+        {
+            "name": "patients",
+            "path": "patients"
+        },
+        {
+            "name": "dashboard",
+            "path": "dashboard"
+        }
+    ],
+    "app_routes": [
+        {
+            "module": "clinics",
+            "re_path": "^clinics/",
+            "url": "urls"
+        },
+        {
+            "module": "paediatricians",
+            "re_path": "^paediatricians/",
+            "url": "urls"
+        },
+        {
+            "module": "therapists",
+            "re_path": "^therapists/",
+            "url": "urls"
+        },
+        {
+            "module": "patients",
+            "re_path": "^patients/",
+            "url": "urls"
+        },
+        {
+            "module": "dashboard",
+            "re_path": "^dashboard/",
+            "url": "urls"
+        }
+    ],
+    "app_name": "Toivotec2333",
+    "zango_version": ">=0.3.0",
+    "package_routes": [
+        {
+            "re_path": "^crud/",
+            "package": "crud",
+            "url": "urls"
+        },
+        {
+            "re_path": "^frame/",
+            "package": "frame",
+            "url": "urls"
+        },
+        {
+            "re_path": "^login/",
+            "package": "login",
+            "url": "urls"
+        },
+        {
+            "re_path": "^workflow/",
+            "package": "workflow",
+            "url": "urls"
+        },
+        {
+            "re_path": "^communication/",
+            "package": "communication",
+            "url": "urls"
+        }
+    ]
+}

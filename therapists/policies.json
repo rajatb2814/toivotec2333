@@ -1,0 +1,19 @@
+{
+    "policies": [
+        {
+            "name": "TherapistCrudViewAccessPolicy",
+            "description": "TherapistCrudView access policy",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "therapists.views.TherapistCrudView",
+                        "type": "view"
+                    }
+                ]
+            },
+            "roles": [
+                "Admin"
+            ]
+        }
+    ]
+}

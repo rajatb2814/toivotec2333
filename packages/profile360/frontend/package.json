@@ -1,0 +1,79 @@
+{
+  "name": "patient-profile-v2-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://app5.zelthy.com:8000",
+  "homepage": ".",
+  "dependencies": {
+    "@headlessui/react": "^1.6.5",
+    "@popperjs/core": "^2.11.6",
+    "@tanstack/react-table": "^8.5.13",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@tippyjs/react": "^4.2.6",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react-dates": "^21.8.3",
+    "@types/react-dom": "^18.0.0",
+    "env-cmd": "^10.1.0",
+    "formik": "^2.2.9",
+    "i18next": "^21.8.13",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-dates": "^21.8.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.0",
+    "react-i18next": "^11.18.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-popper": "^2.3.0",
+    "react-router-dom": "6",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.4.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "web-vitals": "^2.1.0",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "node generate-build.js && env-cmd -f .env npm run build:react && npm run build:bundle",
+    "build:react": "react-scripts build",
+    "build:bundle": "webpack --config webpack.config.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.18",
+    "@types/react-table": "^7.7.12",
+    "autoprefixer": "^10.4.7",
+    "msw": "0.43.0",
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.11",
+    "tailwindcss": "^3.1.4",
+    "webpack-cli": "^4.10.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

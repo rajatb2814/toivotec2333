@@ -1,0 +1,16 @@
+{
+    "policies": [
+        {
+            "name": "FrameDownloadsViewAccess",
+            "description": "Policy for accessing the My Downloads view",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "packages.frame.downloads.views.DownloadCrudView",
+                        "type": "view"
+                    }
+                ]
+            }
+        }
+    ]
+}

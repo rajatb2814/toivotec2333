@@ -1,0 +1,19 @@
+{
+    "policies": [
+        {
+            "name": "ClinicCrudViewAccessPolicy",
+            "description": "ClinicCrudView access policy",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "clinics.views.ClinicCrudView",
+                        "type": "view"
+                    }
+                ]
+            },
+            "roles": [
+                "Admin"
+            ]
+        }
+    ]
+}

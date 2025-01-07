@@ -1,0 +1,7 @@
+{
+    "version": "0.4.0",
+    "zango": ">=0.4.0",
+    "dependencies": {
+        "frame": ">=0.5.2"
+    }
+}

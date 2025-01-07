@@ -1,0 +1,5 @@
+{
+  // "plugins": ["transform-remove-console"]
+  // "comments": false,
+  "targets": "> 0.25%, not dead"
+}

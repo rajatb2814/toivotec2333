@@ -1,0 +1,21 @@
+{% extends 'crud/standalone_form.html' %}
+{% load zstatic %}
+
+
+{% block page_style %}
+    <style>
+        /* Center the form */
+        .container {
+            height: 100%;
+            max-width: 100%;
+            padding: 0px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block load_zform_lib %}
+
+    <script src="{% zstatic 'packages/crud/js/zform_lib.v2.0.2.min.js' %}"></script>
+
+{% endblock %}

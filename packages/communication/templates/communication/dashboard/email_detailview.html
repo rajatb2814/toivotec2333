@@ -1,0 +1,217 @@
+{% extends 'frame/_base.html' %}
+{% load zstatic %}
+
+{% block head %}
+<title>{{page_title}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Code+Pro:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script>
+    var csrf_token = "{{ csrf_token }}";
+</script>
+
+<link rel="stylesheet" href="{% zstatic 'packages/communication/css/style.css' %}" />
+
+{% endblock %}
+
+{% block page_content %}
+
+<form method="post">{% csrf_token %}</form>
+<div>
+
+    <div style="padding: 16px;">
+        <div class="d-flex align-items-center" id="close-detail-view" aria-label="Close"
+            style="gap: 8px; cursor: pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                <path
+                    d="M7.59955 9.95935L3.19999 5.99957L7.59955 2.03979C8.13325 1.55943 8.13325 0.839473 7.59955 0.360268C7.06584 -0.120089 6.26592 -0.120089 5.7335 0.360268L0.400279 5.16038C-0.133426 5.64074 -0.133426 6.3607 0.400279 6.83991L5.7335 11.64C5.99972 11.8796 6.2672 12 6.66716 12C7.06712 12 7.33333 11.8796 7.60083 11.64C8.13328 11.1597 8.13326 10.4397 7.59955 9.95935Z"
+                    fill="black" />
+            </svg>
+            Back
+        </div>
+    </div>
+    <div class="offcanvas-body" style="padding: 0px 40px;">
+        <div class="com-pkg-email-heading" id="com-dash-detail-view-heading">
+
+        </div>
+
+        <div
+            style="width: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+            <div class="com-pkg-email-contact-sender">
+                <div style="display: flex; flex-direction: column; justify-content: flex-start; gap: 8px;">
+                    <div class="com-pkg-email-details-label">From: <span id="com-dash-detail-view-from"> </span>
+
+                    </div>
+                    <div style="display: inline-flex; justify-content: flex-start; gap: 8px;">
+                        <div class="com-pkg-email-details-label">To: <span id="com-dash-detail-view-to"> </span>
+                    
+                        </div>
+                    </div>
+                
+                </div>
+                
+                <div style="justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+                    <div id="com-dash-detail-view-date"
+                        style="text-align: right; color: #212429; font-size: 14px; font-family: Lato; font-weight: 400; line-height: 20px; letter-spacing: 0.20px; word-wrap: break-word">
+
+                    </div>
+                    {% comment %} <div
+                        style="justify-content: flex-start; align-items: center; gap: 8px; display: flex; cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M20.2874 17.4374C20.2874 17.8518 19.9518 18.1874 19.5374 18.1874C19.1231 18.1874 18.7874 17.8518 18.7874 17.4374C18.7753 15.6506 18.0609 13.9406 16.7971 12.6777C15.5343 11.414 13.8242 10.6996 12.0374 10.6874H6.51744L8.90995 12.6974C9.22682 12.9646 9.26714 13.438 8.99995 13.7549C8.73276 14.0718 8.25934 14.1121 7.94246 13.8449L3.98246 10.4998C3.81278 10.3573 3.71527 10.1473 3.71527 9.92605C3.71527 9.70482 3.81277 9.49479 3.98246 9.3523L7.94246 5.99974C8.25934 5.73255 8.73278 5.77287 8.99995 6.08974C9.26712 6.40662 9.22683 6.88006 8.90995 7.14723L6.51744 9.14974H12C14.1966 9.15349 16.3022 10.0282 17.8555 11.5817C19.409 13.1351 20.2836 15.2409 20.2874 17.4374Z"
+                                fill="black" />
+                        </svg>
+                        <div
+                            style="text-align: right; color: #212429; font-size: 14px; font-family: Lato; font-weight: 400; line-height: 20px; letter-spacing: 0.20px; word-wrap: break-word">
+                            Reply</div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+            <div class="com-pkg-email-contact-sender" id="com-dash-detail-view-cc">
+            </div>
+        </div>
+        <div id="attachments-container"
+            style="width: 100%; display: hidden; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex; margin-top: 24px;">
+
+        </div>
+        <div id="com-pkg-attachment-label" style="display: none;">
+
+        </div>
+        <div class="email-detail-divider"></div>
+        <div style="color: #212429;font-size: 14px; line-height: 20px; letter-spacing: 0.20px; word-wrap: break-word; margin-top: 24px; "
+            id="com-dash-detail-view-body">
+        </div>
+
+    </div>
+
+    <div>
+
+
+        <script>
+            const currentUrl = window.location.href;
+            const urlSearchParams = new URLSearchParams(window.location.search);
+
+            $("#close-detail-view").on("click", function () {
+                // Remove a specific query parameter
+                urlSearchParams.delete("pk");
+                urlSearchParams.delete("view");
+                urlSearchParams.delete("action");
+
+                // Create a new URL with the updated query parameters
+                const updatedUrl = `${currentUrl.split("?")[0]}?${urlSearchParams.toString()}`;
+
+                // Update the URL without reloading the page
+                window.history.pushState({ path: updatedUrl }, "", updatedUrl);
+                window.location.reload();
+            });
+
+            function handleEmailDetailView(data) {
+
+                $("#com-dash-detail-view-heading").html(data?.subject?.value)
+                $("#com-dash-detail-view-from").html(data?.from_email?.value)
+
+                $("#com-dash-detail-view-to").html(data?.to_email?.value)
+
+                if (data?.timestamp?.value?.length > 0) {
+                    $("#com-dash-detail-view-date").html(data?.timestamp?.value)
+                    $("#com-pkg-email-received-cc").css("display", "block")
+                }
+                if (Array.isArray(data?.attachments?.value) && data?.attachments?.value?.length > 0) {
+                    $("#com-pkg-attachment-label").html(`${data?.attachments?.value?.length} attachment(s)`)
+                    $("#com-pkg-attachment-label").css("display", "block")
+                }
+
+                if (data?.timestamp?.length > 0) {
+                    $("#com-dash-detail-view-date").html(data.timestamp)
+                    $("#com-dash-detail-view-date").css("display", "block")
+                }
+
+                let ccElement = data?.cc_email?.value?.map(el => {
+                    return `
+                    <div class="com-pkg-email-details-label">CC: ${el}</div>
+                    `
+                }).join("")
+
+                console.log("data.cc_email", ccElement)
+
+                if (Array.isArray(data?.attachments?.value)) {
+                    let attachmentElement = data?.attachments?.value?.map(el => {
+                        return `<div class="email-attachment-click" data-attachment=${JSON.stringify(el)} style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; 
+            border-radius: 6px; border: 1px #DDE2E5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex; cursor: pointer;" id="com-pkg-email-attachment">
+                        <div style="justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+                            <div style="width: 18px; height: 18px; position: relative">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                    <path d="M4.44011 4.91994C2.18824 4.91994 0.360107 6.74807 0.360107 8.99994C0.360107 11.2518 2.18824 13.0799 4.44011 13.0799H13.5601C13.6885 13.0818 13.8123 13.0321 13.9042 12.9421C13.9951 12.8512 14.0467 12.7284 14.0467 12.5999C14.0467 12.4715 13.9951 12.3487 13.9042 12.2577C13.8123 12.1677 13.6885 12.1181 13.5601 12.1199H4.44011C2.70292 12.1199 1.32011 10.7371 1.32011 8.99993C1.32011 7.26274 2.70292 5.87993 4.44011 5.87993H14.6401C15.7782 5.87993 16.6801 6.7818 16.6801 7.91993C16.6801 9.05806 15.7782 9.95993 14.6401 9.95993H4.68011C4.14011 9.95993 3.72011 9.53993 3.72011 8.99993C3.72011 8.45993 4.14011 8.03993 4.68011 8.03993H9.00011C9.12855 8.04181 9.2523 7.99212 9.34417 7.90212C9.43511 7.81118 9.48667 7.68837 9.48667 7.55993C9.48667 7.43148 9.43511 7.30867 9.34417 7.21773C9.2523 7.12773 9.12855 7.07805 9.00011 7.07992H4.68011C3.62449 7.07992 2.76011 7.94431 2.76011 8.99992C2.76011 10.0555 3.62449 10.9199 4.68011 10.9199H14.6401C16.2939 10.9199 17.6401 9.57367 17.6401 7.91992C17.6401 6.26618 16.2939 4.91992 14.6401 4.91992L4.44011 4.91994Z" fill="black"/>
+                                </svg>                            
+                            </div>
+                            <div style="color: #212429; font-size: 14px; font-family: Lato; font-weight: 400; line-height: 20px; letter-spacing: 0.20px; word-wrap: break-word">${el?.name}</div>
+                        </div>
+                    </div>`
+                    }).join('')
+                    if (attachmentElement) {
+                        $("#attachments-container").html(attachmentElement)
+                        $(".email-attachment-click").on("click", function () {
+                            let data = $(this).attr("data-attachment")
+                            console.log("attachment file deatils", JSON.parse(data))
+                            window.open(JSON.parse(data).file, '_blank');
+                        })
+                    } else {
+                        $("#attachments-container").remove()
+                    }
+                }
+
+
+                $("#com-dash-detail-view-cc").html(ccElement)
+                $("#com-dash-detail-view-body").html(new DOMParser().parseFromString(data?.email_body?.value, 'text/html').body)
+
+            }
+
+
+            function fetchEmailDetailView() {
+
+                let pk
+                // Get the value of a specific query parameter
+                function getQueryParamValue(param) {
+                    const urlSearchParams = new URLSearchParams(window.location.search);
+                    return urlSearchParams.get(param);
+                }
+
+                // Check if a specific query parameter exists
+                function doesQueryParamExist(param) {
+                    const urlSearchParams = new URLSearchParams(window.location.search);
+                    return urlSearchParams.has(param);
+                }
+
+                // if detail view is already opend before refreshing reopen detailview
+                if (doesQueryParamExist("pk")) {
+                    pk = getQueryParamValue("pk");
+                };
+
+                fetch(`./?pk=${pk}&action=fetch_item_details&view=detail`, {
+                    method: "GET",
+                    headers: {
+                        "X-CSRFToken": csrf_token,
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((responseData) => {
+                        console.log("print detail view data", responseData)
+                        handleEmailDetailView(responseData.response.general_details.fields)
+                    })
+            }
+            fetchEmailDetailView()
+
+        </script>
+
+
+        {% endblock %}

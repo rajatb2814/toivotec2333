@@ -1,0 +1,16 @@
+{
+    "policies": [
+        {
+            "name": "VideoCallView_AllAccess",
+            "description": "Policy for accessing the Zoom views",
+            "statement": {
+                "permissions": [
+                    {
+                        "name": "packages.communication.videocall.views.VideoCallView",
+                        "type": "view"
+                    }
+                ]
+            }
+        }
+    ]
+}
