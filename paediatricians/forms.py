@@ -26,7 +26,8 @@ class PaediatricianForm(BaseForm):
             email=instance.email,
             mobile=instance.phone or "",
             password="Zango@123",
-            role_name="Paediatrician"
+            role_name="Paediatrician",
+            require_verification=False
         )
 
         return instance

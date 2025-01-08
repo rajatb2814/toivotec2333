@@ -25,7 +25,8 @@ class TherapistForm(BaseForm):
             email=instance.email,
             mobile=instance.phone or "",
             password="Zango@123",
-            role_name="Therapist"
+            role_name="Therapist",
+            require_verification=False
         )
         print("res user  ===")
         print(res)
