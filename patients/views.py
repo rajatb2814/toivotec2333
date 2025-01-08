@@ -51,9 +51,9 @@ class PatientProfileView(Profile360BaseView):
             "iframe_tab_enabled": True,
                 "tabs":[
                     {
-                        "key":"Tivotec IOT Feed",
-                        "name":"Tivotec IOT Feed",
-                        "url": "/patients/patients/tivotec_iot_feed/" 
+                        "key":"ToivoTek IOT Feed",
+                        "name":"ToivoTek IOT Feed",
+                        "url": "/patients/patients/toivotek_iot_feed/" 
                     }
             ]
         }
@@ -76,14 +76,14 @@ class PatientProfileView(Profile360BaseView):
         data['app_config'] = {
             "app_code": "Toivotec2333",
             "app_logo_url": "",
-            "app_name": "Tivotec Demo Platform",
+            "app_name": "ToivoTek Demo Platform",
             "app_url": "toivotect.zelthy.com",
             "datetime_format": "%d %b %Y %I:%M %p",
         }
 
         data['timeline_view'] = {
             "components": [
-                "Tivotec IOT Feed",
+                "ToivoTek IOT Feed",
             ],
             "enabled": True
         }
